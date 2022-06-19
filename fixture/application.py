@@ -1,6 +1,5 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
-from fixture.navigation import NavigationHelper
 
 class Application:
 
@@ -14,7 +13,6 @@ class Application:
         else:
             raise ValueError('Unrecognized browser %s' % browser)
         self.session = SessionHelper(self)
-        self.navigation = NavigationHelper(self)
         self.base_url = base_url
 
     def is_valid(self):
