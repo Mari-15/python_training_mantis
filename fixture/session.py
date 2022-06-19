@@ -50,5 +50,9 @@ class SessionHelper:
                 self.logout()
         self.login(username, password)
 
+    def open_project_page(self):
+        wd = self.app.wd
+        wd.get('http://localhost/mantisbt-1.2.20/manage_proj_page.php')
+
 
 
