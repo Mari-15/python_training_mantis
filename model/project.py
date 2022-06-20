@@ -4,3 +4,14 @@ class Project:
         self.status = status
         self.view_status = view_status
         self.description = description
+
+    def __repr__(self):
+        return '%s' % self.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def name_sort(self):
+        if self.name:
+            return str(self.name)
+

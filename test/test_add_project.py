@@ -6,8 +6,12 @@ def test_add_project(app):
     app.session.login('administrator', 'root')
     app.session.open_project_page()
     old_projects = app.project.get_project_list()
-    app.project.create(Project(name='Test115', description='test1test1'))
+    project = Project(name='Test042244', description='test1test1')
+    if project in old_projects:
+        project = Project(name='Rickitikitav', description='test1test1')
+    app.project.create(project)
+    old_projects.append(project)
     new_projects = app.project.get_project_list()
-    assert len(old_projects) == len(new_projects)
+    assert sorted(old_projects, key=Project.name_sort) == sorted(new_projects, key=Project.name_sort)
 
 

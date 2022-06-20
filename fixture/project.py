@@ -44,14 +44,15 @@ class ProjectHelper:
     project_cache = None
 
     def get_project_list(self):
-        if self.project_cache is None:
-            wd = self.app.wd
-            self.app.session.open_project_page()
-            self.project_cache = []
-            for element in wd.find_elements(By.CLASS_NAME, 'row-1'):
+        wd = self.app.wd
+        self.app.session.open_project_page()
+        self.project_cache = []
+        for element in wd.find_elements(By.CLASS_NAME, 'row-1'):
+            if element.find_element(by=By.CSS_SELECTOR, value='td:nth-child(1)').text != 'General':
                 name = element.find_element(by=By.CSS_SELECTOR, value='td:nth-child(1)').text
                 self.project_cache.append(Project(name=name))
-            for element in wd.find_elements(By.CLASS_NAME, 'row-2'):
+        for element in wd.find_elements(By.CLASS_NAME, 'row-2'):
+            if element.find_element(by=By.CSS_SELECTOR, value='td:nth-child(1)').text != 'General':
                 name = element.find_element(by=By.CSS_SELECTOR, value='td:nth-child(1)').text
                 self.project_cache.append(Project(name=name))
         return list(self.project_cache)
