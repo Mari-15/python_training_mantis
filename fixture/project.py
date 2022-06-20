@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from model.project import Project
-import re
 
 
 class ProjectHelper:
