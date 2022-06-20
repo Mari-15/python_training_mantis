@@ -56,3 +56,10 @@ class ProjectHelper:
                 name = element.find_element(by=By.CSS_SELECTOR, value='td:nth-child(1)').text
                 self.project_cache.append(Project(name=name))
         return list(self.project_cache)
+
+    def delete(self, name):
+        wd = self.app.wd
+        wd.find_element(by=By.XPATH, value='//a[contains(text(),"%s")]' % name).click()
+        wd.find_element(by=By.XPATH, value='//input[@value="Delete Project"]').click()
+        wd.find_element(by=By.XPATH, value='//input[@value="Delete Project"]').click()
+
