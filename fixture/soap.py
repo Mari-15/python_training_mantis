@@ -20,6 +20,7 @@ class SoapHelper:
         client = Client('http://localhost/mantisbt-1.2.20/api/soap/mantisconnect.php?wsdl')
         try:
             project_list = client.service.mc_projects_get_user_accessible(username, password)
+            project_list = list(map(lambda x: x.name, project_list))
             return project_list
         except WebFault:
             return False
