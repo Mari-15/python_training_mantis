@@ -9,13 +9,12 @@ def random_projectname(prefix, maxlen):
 
 
 def test_del_project(app):
-    app.session.open_project_page()
-    old_projects = app.soap.list_project_for_user(username='administrator', password='root')
+    old_projects = app.soap.list_project_for_user()
     if len(old_projects) == 0:
         app.project.create(Project(name=random_projectname('name_', 10)))
     project = random.choice(old_projects)
     app.project.delete(project)
-    new_projects = app.soap.list_project_for_user(username='administrator', password='root')
+    new_projects = app.soap.list_project_for_user()
     assert len(old_projects) - 1 == len(new_projects)
     old_projects.remove(project)
     assert sorted(old_projects) == sorted(new_projects)

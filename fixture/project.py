@@ -32,6 +32,7 @@ class ProjectHelper:
 
     def create(self, project):
         wd = self.app.wd
+        self.app.session.open_project_page()
         wd.find_element(by=By.XPATH, value='/html/body/table[3]/tbody/tr[1]/td/form/input[2]').click()
         #fill form
         self.fill_form(project)
@@ -58,6 +59,7 @@ class ProjectHelper:
 
     def delete(self, name):
         wd = self.app.wd
+        self.app.session.open_project_page()
         wd.find_element(by=By.XPATH, value='//a[contains(text(),"%s")]' % name).click()
         wd.find_element(by=By.XPATH, value='//input[@value="Delete Project"]').click()
         wd.find_element(by=By.XPATH, value='//input[@value="Delete Project"]').click()
